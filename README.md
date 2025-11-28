@@ -1,8 +1,15 @@
 # ART-ASyn: Anatomy-aware Realistic Texture-based Anomaly Synthesis Framework for Chest X-Rays
 
+## Paper
+**Paper Link**: link not set up yet
+
 ## Overview
 
 ART-ASyn presents an anatomy-aware realistic texture-based framework for synthesizing medical anomalies in chest X-ray images. The method generates realistic synthetic anomalies that preserve anatomical consistency and texture patterns for improved anomaly detection and classification in medical imaging.
+
+<div style="text-align: center;">
+  <img src="ART-ASyn Diagram.svg" width="100%" alt="ART-ASyn Framework Architecture">
+</div>
 
 ## Data Acquisition
 
