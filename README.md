@@ -1,17 +1,35 @@
 # ART-ASyn: Anatomy-aware Realistic Texture-based Anomaly Synthesis Framework for Chest X-Rays
 
-## Paper
-**Paper Link**: link not set up yet
+## Overview
+This repository contains the official implementation for the WACV 2026 accepted paper **"ART-ASyn: Anatomy-aware Realistic Texture-based Anomaly Synthesis Framework for Chest X-Rays"**.
+
+<div style="text-align: center;">
+  <img src="ART-ASyn Diagram.svg" width="800" alt="ART-ASyn Diagram">
+</div>
+
+Our work  presents a novel **A**natomy-aware **R**ealistic **T**exture-based **A**nomaly **Syn**thesis framework (**ART-ASyn**) for chest X-rays that generates realistic and anatomically consistent lung opacity related anomalies using texture-based augmentation guided by our proposed **P**rogressive **B**inary **T**hresholding **Seg**mentation method (**PBTSeg**) for lung segmentation.
 
 ## Overview
 
 ART-ASyn presents an anatomy-aware realistic texture-based framework for synthesizing medical anomalies in chest X-ray images. The method generates realistic synthetic anomalies that preserve anatomical consistency and texture patterns for improved anomaly detection and classification in medical imaging.
 
 <div style="text-align: center;">
-  <img src="ART-ASyn Diagram.svg" width="100%" alt="ART-ASyn Framework Architecture">
+  <img src="PBTSeg Diagram.svg" width="100%" alt="PBTSeg Diagram">
 </div>
 
-## Data Acquisition
+## Data Format & Acquisition
+
+The framework expects data to be organized in the following directory structure:
+
+```
+data/
+└── <dataset_name>/
+    ├── train/
+    │   └── healthy/
+    └── test/
+        ├── healthy/
+        └── diseased/
+```
 
 All datasets mentioned in the paper are available under the `data/` directory:
 - **CheXpert**: Located at `data/CheXpert/`
@@ -22,49 +40,50 @@ Please refer to the respective dataset documentation for acquisition details of 
 
 ## Usage
 
-### CheXpert Dataset
+#### Preprocessing
+Before running the framework, ensure the following preprocessing steps are completed:
+
+**Step 1: PBTSeg Lung Segmentation**
 ```bash
-# Preprocessing
 cd ART-ASyn/preprocessing
+python PBTSeg.py --dataset <dataset_name>
+```
+This step performs progressive binary thresholding to generate accurate lung masks for anatomical constraint.
+
+**Step 2: ART-ASyn Anomaly Synthesis**
+```bash
+cd ART-ASyn/preprocessing  
+python ART_ASyn.py --dataset <dataset_name>
+```
+This step generates realistic synthetic anomalies with pixel-level masks using texture-based augmentation.
+
+#### Training
+After preprocessing, train the model:
+```bash
+cd ART-ASyn
+python train.py --dataset <dataset_name> --data_dir ../data/<dataset_name>
+```
+
+#### Testing
+Evaluate the trained model:
+```bash
+cd ART-ASyn
+python test.py --dataset <dataset_name> --data_dir ../data/<dataset_name> --model_path <saved_model_path>
+```
+
+#### Complete Workflow Example - CheXpert
+```bash
+# Complete preprocessing pipeline
+cd ART-ASyn/preprocessing
+python PBTSeg.py --dataset CheXpert
 python ART_ASyn.py --dataset CheXpert
 
 # Training
-cd ART-ASyn
-python train.py --dataset CheXpert --data_dir ../data/CheXpert
+cd ../../
+python train.py --dataset CheXpert --data_dir data/CheXpert
 
 # Testing
-cd ART-ASyn
-python test.py --dataset CheXpert --data_dir ../data/CheXpert --model_path <saved_model_path>
-```
-
-### ZhangLab Dataset
-```bash
-# Preprocessing
-cd ART-ASyn/preprocessing
-python preprocessing/ART_ASyn.py --dataset ZhangLab
-
-# Training
-cd ART-ASyn
-python train.py --dataset ZhangLab --data_dir ../data/ZhangLab
-
-# Testing
-cd ART-ASyn
-python test.py --dataset ZhangLab --data_dir ../data/ZhangLab --model_path <saved_model_path>
-```
-
-### QaTa-ZeroShot Dataset
-```bash
-# Preprocessing
-cd ART-ASyn/preprocessing
-python preprocessing/ART_ASyn.py --dataset QaTa-ZeroShot
-
-# Training
-cd ART-ASyn
-python train.py --dataset QaTa-ZeroShot --data_dir ../data/QaTa-ZeroShot
-
-# Testing
-cd ART-ASyn
-python test.py --dataset QaTa-ZeroShot --data_dir ../data/QaTa-ZeroShot --model_path <saved_model_path>
+python test.py --dataset CheXpert --data_dir data/CheXpert --model_path <saved_model_path>
 ```
 
 ## Citation
