@@ -3,15 +3,15 @@
 ## Overview
 This repository contains the official implementation for the WACV 2026 accepted paper **"ART-ASyn: Anatomy-aware Realistic Texture-based Anomaly Synthesis Framework for Chest X-Rays"**.
 
-<div style="margin: 0 auto;">
+<center>
   <img src="ART-ASyn Diagram.svg" width="800" alt="ART-ASyn Diagram">
-</div>
+</center>
 
 Our work  presents a novel **A**natomy-aware **R**ealistic **T**exture-based **A**nomaly **Syn**thesis framework (**ART-ASyn**) for chest X-rays that generates realistic and anatomically consistent lung opacity related anomalies using texture-based augmentation guided by our proposed **P**rogressive **B**inary **T**hresholding **Seg**mentation method (**PBTSeg**) for lung segmentation.
 
-<div style="margin: 0 auto;">
+<center>
   <img src="PBTSeg Diagram.svg" width="70%" alt="PBTSeg Diagram">
-</div>
+</center>
 
 ## Data Format & Acquisition
 
@@ -80,6 +80,17 @@ python train.py --dataset CheXpert --data_dir data/CheXpert
 
 # Testing
 python test.py --dataset CheXpert --data_dir data/CheXpert --model_path <saved_model_path>
+```
+
+### Python Environment
+- **Python**: 3.7 or higher
+- **Operating System**: Windows, macOS, or Linux
+
+### Dependencies Installation
+All required packages are listed in `requirements.txt`. Install using:
+
+```bash
+pip install -r requirements.txt
 ```
 
 ## Citation
