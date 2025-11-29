@@ -1,10 +1,8 @@
 import os
 import cv2
-import cxas
 import torch
 import random
 import numpy as np
-import matplotlib.pyplot as plt
 
 from io import BytesIO
 from PIL import Image, ImageFilter
