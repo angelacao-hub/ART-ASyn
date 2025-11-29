@@ -9,12 +9,8 @@ This repository contains the official implementation for the WACV 2026 accepted 
 
 Our work  presents a novel **A**natomy-aware **R**ealistic **T**exture-based **A**nomaly **Syn**thesis framework (**ART-ASyn**) for chest X-rays that generates realistic and anatomically consistent lung opacity related anomalies using texture-based augmentation guided by our proposed **P**rogressive **B**inary **T**hresholding **Seg**mentation method (**PBTSeg**) for lung segmentation.
 
-## Overview
-
-ART-ASyn presents an anatomy-aware realistic texture-based framework for synthesizing medical anomalies in chest X-ray images. The method generates realistic synthetic anomalies that preserve anatomical consistency and texture patterns for improved anomaly detection and classification in medical imaging.
-
 <div style="text-align: center;">
-  <img src="PBTSeg Diagram.svg" width="100%" alt="PBTSeg Diagram">
+  <img src="PBTSeg Diagram.svg" width="70%" alt="PBTSeg Diagram">
 </div>
 
 ## Data Format & Acquisition
